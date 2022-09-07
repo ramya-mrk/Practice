@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Booking</name>
+        <label>Booking</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <actionName>Booking__c.Flows_Booking_Email_Alerts</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <environments>Default</environments>
+    <interviewLabel>Booking C&amp;C {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Booking C&amp;C</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Booking</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Booking_status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Confirmed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Booking_status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <object>Booking__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Booking_body</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;&amp;lt;img&amp;nbsp;style=&quot; display: block; margin:0 auto&quot; src=&quot; https://github.com/aditya24raj/Flying-Mirkeets/blob/main/flying_mirkets_logo_transparent.png?raw=true&quot;&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;Hi {!$Record.Passenger_Name__c}, &amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;Your booking has been {!$Record.Booking_status__c}.&lt;/p&gt;&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;Ticket Details :-&amp;nbsp;&lt;/p&gt;&lt;p&gt;&amp;lt;table&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tbody&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; backgrou{!$Record}nd-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Passenger Name&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$Record.Passenger_Name__c}&lt;/span&gt;&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Flight Number&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Flight_Name__r.Name}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Onboarding from&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;{!$Record.Flight_Name__r.Onboarding_From__c}&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Ariving To&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;{!$Record.Arriving_To__c}&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Booking Status&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Booking_status__c}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Email&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Passenger_Email__c}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Passenger Type&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Passenger_Type__c}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Fare Type&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Fare_Type__c}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray ; background-color: black; color: white&quot;&amp;gt;&amp;lt;b&amp;gt;Ticket Fare&amp;lt;/b&amp;gt;&amp;lt;/td&amp;gt;&amp;lt;br&amp;gt;&amp;lt;td&amp;nbsp;style=&quot;border: 1px solid gray&quot;&amp;gt;{!$Record.Total_Fare__c}&amp;lt;/td&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tr&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/tbody&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;/table&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;p&amp;gt;Happy Journey :)&amp;lt;/p&amp;gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;br&amp;gt;Regards,&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;Flying Mirkets&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&amp;lt;br&amp;gt;&lt;/p&gt;&lt;p&gt;&amp;lt;b&amp;gt;Disclaimer&amp;lt;/b&amp;gt;:&amp;lt;p&amp;gt;Flying Mirkets and its licensors retain all rights (including copyright and patent rights) with respect to all software and underlying information and material available through the website. Access to it does not imply a free license to use it unless permitted by law&amp;lt;/p&amp;gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Booking_Subject</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;Booking {!$Record.Booking_status__c} - {!$Record.Passenger_Name__c}&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>
