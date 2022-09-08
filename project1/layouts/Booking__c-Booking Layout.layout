@@ -11,10 +11,7 @@
                 <behavior>Readonly</behavior>
                 <field>Name</field>
             </layoutItems>
-            <layoutItems>
-                <behavior>Required</behavior>
-                <field>Passenger_Name__c</field>
-            </layoutItems>
+            
             <layoutItems>
                 <behavior>Required</behavior>
                 <field>Passenger_Email__c</field>
