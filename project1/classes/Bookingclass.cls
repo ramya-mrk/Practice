@@ -5,6 +5,11 @@ public class Bookingclass {
     {
         newObj = new Booking__c();
     }
+	
+	//Dummy method
+	public Booking(){
+		newOb=new Contact();
+	}
     
      public void saveBooking()
     {
