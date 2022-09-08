@@ -1,0 +1,4 @@
+Iam learning sourcetree
+Cretaed a branch from main
+and created a txt filr R1
+and am typing in txt file
