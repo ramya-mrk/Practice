@@ -6,10 +6,13 @@ public class Bookingclass {
         newObj = new Booking__c();
     }
 	
-	//Dummy method
-	public Booking(){
-		newOb=new Contact();
-	}
+	//Dummy2
+	public Bookingclass()
+    {
+        newObj = new Booking__c();
+    }
+	
+	
     
      public void saveBooking()
     {
